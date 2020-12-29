@@ -6,8 +6,13 @@
 //
 
 #import "SceneDelegate.h"
+#import "ViewController.h"
+#import "GTVideoViewController.h"
+#import "GTRecommendViewController.h"
+#import "GTLikeViewController.h"
+#import "GTMyViewController.h"
 
-@interface SceneDelegate ()
+@interface SceneDelegate ()<UITabBarControllerDelegate>
 
 @end
 
@@ -18,6 +23,33 @@
     // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
     // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
     // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    
+    GTRecommendViewController *recommendController = [[GTRecommendViewController alloc] init];
+    
+    GTLikeViewController *likeController = [[GTLikeViewController alloc] init];
+
+    
+    GTVideoViewController *videoController = [[GTVideoViewController alloc] init];
+    
+    GTMyViewController *myController = [[GTMyViewController alloc] init];
+
+    
+    [tabBarController setViewControllers:@[recommendController , likeController, videoController, myController]];
+    tabBarController.delegate = self;
+    
+    self.window = [[UIWindow alloc] initWithWindowScene:(UIWindowScene *)scene];
+
+    
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController: tabBarController];
+    
+    self.window.rootViewController = navController;
+    [self.window makeKeyAndVisible];
+}
+
+- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    NSLog(@"did select controller");
 }
 
 
