@@ -10,7 +10,8 @@
 #import "GTDeleteCellView.h"
 
 @interface GTLikeViewController () <UITableViewDelegate, UITableViewDataSource, GTNormalTableViewCellDelegate>
-
+@property(nonatomic, strong, readwrite) UITableView *tableView;
+@property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
 @end
 
 @implementation GTLikeViewController
@@ -18,6 +19,10 @@
 - (instancetype) init {
     self = [super init];
     if(self) {
+        _dataArray = @[].mutableCopy;
+        for(int i =0; i< 20; i++) {
+            [_dataArray addObject:@(i)];
+        }
         self.tabBarItem.title = @"table";
         self.tabBarItem.image = [UIImage imageNamed:@"icon.bundle/like@2x.png"];
     }
@@ -29,11 +34,11 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    UITableView *tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
-    tableView.delegate = self;
-    tableView.dataSource = self;
+    _tableView = [[UITableView alloc] initWithFrame:self.view.bounds];
+    _tableView.delegate = self;
+    _tableView.dataSource = self;
     
-    [self.view addSubview:tableView];
+    [self.view addSubview:_tableView];
     
 }
 
@@ -42,7 +47,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return _dataArray.count;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -68,8 +73,11 @@
     
     CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
     
+    __weak typeof(self) wself = self;
     [view showDeleteViewFromPoint:rect.origin clickBlock:^{
-        NSLog(@"");
+        __strong typeof(self)strongSelf = wself;
+        [strongSelf.dataArray removeLastObject];
+        [strongSelf.tableView deleteRowsAtIndexPaths:@[[strongSelf.tableView indexPathForCell:tableViewCell]] withRowAnimation:UITableViewRowAnimationAutomatic];
     }];
 }
 
