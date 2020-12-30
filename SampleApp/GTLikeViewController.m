@@ -65,7 +65,12 @@
 
 - (void)tableViewCell: (UITableViewCell *) tableViewCell clickDeleteButtun: (UIButton *) deleteButton {
     GTDeleteCellView *view = [[GTDeleteCellView alloc] initWithFrame:self.view.bounds];
-    [view showDeleteView];
+    
+    CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
+    
+    [view showDeleteViewFromPoint:rect.origin clickBlock:^{
+        NSLog(@"");
+    }];
 }
 
 @end
