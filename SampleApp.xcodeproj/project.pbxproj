@@ -82,33 +82,49 @@
 		AD3B83742587828F0076E73A /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				ADD612D6259F7BFC00A2FD05 /* viewController */,
+				ADD612D4259F7BA400A2FD05 /* view */,
 				AD3B83902588D1300076E73A /* icon.bundle */,
 				ADD612B2258CB94400A2FD05 /* icon.bundle */,
 				AD3B83752587828F0076E73A /* AppDelegate.h */,
 				AD3B83762587828F0076E73A /* AppDelegate.m */,
 				AD3B83782587828F0076E73A /* SceneDelegate.h */,
 				AD3B83792587828F0076E73A /* SceneDelegate.m */,
-				AD3B837B2587828F0076E73A /* ViewController.h */,
-				AD3B837C2587828F0076E73A /* ViewController.m */,
 				AD3B837E2587828F0076E73A /* Main.storyboard */,
 				AD3B8381258782910076E73A /* Assets.xcassets */,
 				AD3B8383258782910076E73A /* LaunchScreen.storyboard */,
 				AD3B8386258782910076E73A /* Info.plist */,
 				AD3B8387258782910076E73A /* main.m */,
+			);
+			path = SampleApp;
+			sourceTree = "<group>";
+		};
+		ADD612D4259F7BA400A2FD05 /* view */ = {
+			isa = PBXGroup;
+			children = (
+				ADD612BD2598DA5D00A2FD05 /* GTNormalTableViewCell.h */,
+				ADD612BE2598DA5D00A2FD05 /* GTNormalTableViewCell.m */,
+				ADD612CF259B803000A2FD05 /* GTDeleteCellView.h */,
+				ADD612D0259B803000A2FD05 /* GTDeleteCellView.m */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		ADD612D6259F7BFC00A2FD05 /* viewController */ = {
+			isa = PBXGroup;
+			children = (
+				AD3B837B2587828F0076E73A /* ViewController.h */,
+				AD3B837C2587828F0076E73A /* ViewController.m */,
 				ADD612B5258CE69D00A2FD05 /* GTVideoViewController.h */,
 				ADD612B6258CE69D00A2FD05 /* GTVideoViewController.m */,
 				ADD612B92590EB6600A2FD05 /* GTRecommendViewController.h */,
 				ADD612BA2590EB6600A2FD05 /* GTRecommendViewController.m */,
-				ADD612BD2598DA5D00A2FD05 /* GTNormalTableViewCell.h */,
-				ADD612BE2598DA5D00A2FD05 /* GTNormalTableViewCell.m */,
 				ADD612C12598DF3000A2FD05 /* GTLikeViewController.h */,
 				ADD612C22598DF3000A2FD05 /* GTLikeViewController.m */,
 				ADD612CB259A2E7200A2FD05 /* GTMyViewController.h */,
 				ADD612CC259A2E7200A2FD05 /* GTMyViewController.m */,
-				ADD612CF259B803000A2FD05 /* GTDeleteCellView.h */,
-				ADD612D0259B803000A2FD05 /* GTDeleteCellView.m */,
 			);
-			path = SampleApp;
+			name = viewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
