@@ -8,10 +8,12 @@
 #import "GTLikeViewController.h"
 #import "GTNormalTableViewCell.h"
 #import "GTDeleteCellView.h"
+#import "GTListLoader.h"
 
 @interface GTLikeViewController () <UITableViewDelegate, UITableViewDataSource, GTNormalTableViewCellDelegate>
 @property(nonatomic, strong, readwrite) UITableView *tableView;
 @property(nonatomic, strong, readwrite) NSMutableArray *dataArray;
+@property(nonatomic, strong, readwrite) GTListLoader *listLoader;
 @end
 
 @implementation GTLikeViewController
@@ -39,6 +41,9 @@
     _tableView.dataSource = self;
     
     [self.view addSubview:_tableView];
+    
+    self.listLoader = [[GTListLoader alloc] init];
+    [self.listLoader loadListData];
     
 }
 
