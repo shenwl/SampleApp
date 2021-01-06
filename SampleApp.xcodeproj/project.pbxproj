@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		93C1917D00F621CE2FED2043 /* libPods-SampleApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C5277093182647CF345E0A4D /* libPods-SampleApp.a */; };
 		AD3B83772587828F0076E73A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3B83762587828F0076E73A /* AppDelegate.m */; };
 		AD3B837A2587828F0076E73A /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3B83792587828F0076E73A /* SceneDelegate.m */; };
 		AD3B837D2587828F0076E73A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AD3B837C2587828F0076E73A /* ViewController.m */; };
@@ -21,9 +22,11 @@
 		ADD612C32598DF3000A2FD05 /* GTLikeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD612C22598DF3000A2FD05 /* GTLikeViewController.m */; };
 		ADD612CD259A2E7200A2FD05 /* GTMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD612CC259A2E7200A2FD05 /* GTMyViewController.m */; };
 		ADD612D1259B803000A2FD05 /* GTDeleteCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD612D0259B803000A2FD05 /* GTDeleteCellView.m */; };
+		ADD612E1259F7C9000A2FD05 /* GTListLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = ADD612E0259F7C9000A2FD05 /* GTListLoader.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4EF6DC4114D2A2F2B3FAC591 /* Pods-SampleApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.release.xcconfig"; path = "Target Support Files/Pods-SampleApp/Pods-SampleApp.release.xcconfig"; sourceTree = "<group>"; };
 		AD3B83722587828F0076E73A /* SampleApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD3B83752587828F0076E73A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		AD3B83762587828F0076E73A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -50,6 +53,10 @@
 		ADD612CC259A2E7200A2FD05 /* GTMyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTMyViewController.m; sourceTree = "<group>"; };
 		ADD612CF259B803000A2FD05 /* GTDeleteCellView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTDeleteCellView.h; sourceTree = "<group>"; };
 		ADD612D0259B803000A2FD05 /* GTDeleteCellView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTDeleteCellView.m; sourceTree = "<group>"; };
+		ADD612DF259F7C9000A2FD05 /* GTListLoader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GTListLoader.h; sourceTree = "<group>"; };
+		ADD612E0259F7C9000A2FD05 /* GTListLoader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GTListLoader.m; sourceTree = "<group>"; };
+		B7F142F5CF54D6A9BF6A0D9C /* Pods-SampleApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SampleApp.debug.xcconfig"; path = "Target Support Files/Pods-SampleApp/Pods-SampleApp.debug.xcconfig"; sourceTree = "<group>"; };
+		C5277093182647CF345E0A4D /* libPods-SampleApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SampleApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,17 +64,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93C1917D00F621CE2FED2043 /* libPods-SampleApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		87DB42E8DED6A29DE094992F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C5277093182647CF345E0A4D /* libPods-SampleApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		AD3B83692587828F0076E73A = {
 			isa = PBXGroup;
 			children = (
 				AD3B83742587828F0076E73A /* SampleApp */,
 				AD3B83732587828F0076E73A /* Products */,
+				D4DB0F2E1D3F0BA75ABF0490 /* Pods */,
+				87DB42E8DED6A29DE094992F /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,6 +100,7 @@
 		AD3B83742587828F0076E73A /* SampleApp */ = {
 			isa = PBXGroup;
 			children = (
+				ADD612DE259F7C7C00A2FD05 /* loader */,
 				ADD612D6259F7BFC00A2FD05 /* viewController */,
 				ADD612D4259F7BA400A2FD05 /* view */,
 				AD3B83902588D1300076E73A /* icon.bundle */,
@@ -127,6 +146,25 @@
 			name = viewController;
 			sourceTree = "<group>";
 		};
+		ADD612DE259F7C7C00A2FD05 /* loader */ = {
+			isa = PBXGroup;
+			children = (
+				ADD612DF259F7C9000A2FD05 /* GTListLoader.h */,
+				ADD612E0259F7C9000A2FD05 /* GTListLoader.m */,
+			);
+			name = loader;
+			sourceTree = "<group>";
+		};
+		D4DB0F2E1D3F0BA75ABF0490 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B7F142F5CF54D6A9BF6A0D9C /* Pods-SampleApp.debug.xcconfig */,
+				4EF6DC4114D2A2F2B3FAC591 /* Pods-SampleApp.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -134,6 +172,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AD3B838B258782910076E73A /* Build configuration list for PBXNativeTarget "SampleApp" */;
 			buildPhases = (
+				2C91A2EA8B3BA8F0EC8B20D4 /* [CP] Check Pods Manifest.lock */,
 				AD3B836E2587828F0076E73A /* Sources */,
 				AD3B836F2587828F0076E73A /* Frameworks */,
 				AD3B83702587828F0076E73A /* Resources */,
@@ -192,11 +231,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2C91A2EA8B3BA8F0EC8B20D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SampleApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AD3B836E2587828F0076E73A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ADD612E1259F7C9000A2FD05 /* GTListLoader.m in Sources */,
 				ADD612C32598DF3000A2FD05 /* GTLikeViewController.m in Sources */,
 				ADD612BF2598DA5D00A2FD05 /* GTNormalTableViewCell.m in Sources */,
 				AD3B837D2587828F0076E73A /* ViewController.m in Sources */,
@@ -346,6 +411,7 @@
 		};
 		AD3B838C258782910076E73A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B7F142F5CF54D6A9BF6A0D9C /* Pods-SampleApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -364,6 +430,7 @@
 		};
 		AD3B838D258782910076E73A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4EF6DC4114D2A2F2B3FAC591 /* Pods-SampleApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
