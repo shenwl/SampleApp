@@ -12,7 +12,7 @@
 -(void) configWithDictionary: (NSDictionary *) dictnary {
 #warning 类型是否匹配
     self.category = [dictnary objectForKey:@"category"];
-    self.picUrl = [dictnary objectForKey:@"thunmnail_pic_s"];
+    self.picUrl = [dictnary objectForKey:@"thumbnail_pic_s"];
     self.uniquekey = [dictnary objectForKey:@"uniquekey"];
     self.title = [dictnary objectForKey:@"title"];
     self.date = [dictnary objectForKey:@"date"];
