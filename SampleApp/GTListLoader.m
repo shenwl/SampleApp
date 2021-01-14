@@ -38,6 +38,27 @@
         });
     }];
     [dataTask resume];
+    [self _getSandBoxPath];
+}
+
+- (void)_getSandBoxPath {
+    NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    
+    NSString *cachePath = [pathArr firstObject];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSString *dataPath = [cachePath stringByAppendingPathComponent:@"GTData"];
+    
+    NSError *createError;
+    [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&createError];
+    
+    NSString *listDataPath = [dataPath stringByAppendingPathComponent:@"list"];
+    NSData *listData = [@"abc" dataUsingEncoding:NSUTF8StringEncoding];
+
+    [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
+        
+    NSLog(@"");
 }
 
 @end
