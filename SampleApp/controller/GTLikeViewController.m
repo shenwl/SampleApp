@@ -9,6 +9,9 @@
 #import "GTNormalTableViewCell.h"
 #import "GTDeleteCellView.h"
 #import "GTListLoader.h"
+#import "GTDetailViewController.h"
+#import "GTListItem.h"
+
 
 @interface GTLikeViewController () <UITableViewDelegate, UITableViewDataSource, GTNormalTableViewCellDelegate>
 @property(nonatomic, strong, readwrite) UITableView *tableView;
@@ -57,9 +60,11 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    UIViewController *controller = [[UIViewController alloc] init];
-    controller.title = [NSString stringWithFormat:@"%@", @(indexPath.row)];
-    controller.view.backgroundColor = [UIColor whiteColor];
+    GTListItem *item = [self.dataArray objectAtIndex:indexPath.row];
+    
+    GTDetailViewController *controller = [[GTDetailViewController alloc] initWithUrl:item.articleUrl];
+
+    controller.title = item.title;
     [self.navigationController pushViewController:controller animated:true];
 }
 
@@ -76,9 +81,9 @@
 
 //- (void)tableViewCell: (UITableViewCell *) tableViewCell clickDeleteButtun: (UIButton *) deleteButton {
 //    GTDeleteCellView *view = [[GTDeleteCellView alloc] initWithFrame:self.view.bounds];
-//    
+//
 //    CGRect rect = [tableViewCell convertRect:deleteButton.frame toView:nil];
-//    
+//
 //    __weak typeof(self) wself = self;
 //    [view showDeleteViewFromPoint:rect.origin clickBlock:^{
 //        __strong typeof(self)strongSelf = wself;
