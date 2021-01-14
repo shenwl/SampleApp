@@ -16,7 +16,11 @@
     NSURL *listUrl = [NSURL URLWithString:urlString];
     NSURLSession *session = [NSURLSession sharedSession];
     
+    
+    __weak typeof(self) weakSelf = self;
     NSURLSessionDataTask *dataTask = [session dataTaskWithURL:listUrl completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+        __strong typeof(weakSelf) strongSelf = weakSelf;
+
         NSError *jsonError;
         
         id jsonObj = [NSJSONSerialization JSONObjectWithData:data options:0 error:&jsonError];
@@ -25,12 +29,15 @@
         NSArray *dataArray = [(NSDictionary *) [((NSDictionary *) jsonObj) objectForKey:@"result"] objectForKey:@"data"];
         
         NSMutableArray *listItemArray = @[].mutableCopy;
-        
+                
         for (NSDictionary *info in dataArray) {
             GTListItem *item = [[GTListItem alloc] init];
             [item configWithDictionary:info];
             [listItemArray addObject:item];
         }
+        
+        [strongSelf _archiveListData:listItemArray];
+        
         dispatch_async(dispatch_get_main_queue(), ^{
             if(finishBlock) {
                 finishBlock(error == nil, listItemArray);
@@ -38,10 +45,9 @@
         });
     }];
     [dataTask resume];
-    [self _getSandBoxPath];
 }
 
-- (void)_getSandBoxPath {
+- (void)_archiveListData:(NSArray<GTListItem *> *)array {
     NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     
     NSString *cachePath = [pathArr firstObject];
@@ -54,11 +60,10 @@
     [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&createError];
     
     NSString *listDataPath = [dataPath stringByAppendingPathComponent:@"list"];
-    NSData *listData = [@"abc" dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *listData = [NSKeyedArchiver archivedDataWithRootObject:array requiringSecureCoding:YES error:nil];
 
     [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
-        
-    NSLog(@"");
 }
 
 @end
