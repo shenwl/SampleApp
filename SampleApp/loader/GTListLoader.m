@@ -64,6 +64,11 @@
     NSData *listData = [NSKeyedArchiver archivedDataWithRootObject:array requiringSecureCoding:YES error:nil];
 
     [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
+    
+    NSData *readListData = [fileManager contentsAtPath:listDataPath];
+    
+    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects: [NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
+    NSLog(@"");
 }
 
 @end
