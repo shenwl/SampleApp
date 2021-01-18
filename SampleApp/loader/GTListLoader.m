@@ -11,6 +11,12 @@
 @implementation GTListLoader
 
 - (void)loadListDataWithFinishBlock: (GTListLoaderFinishBlock)finishBlock {
+    NSArray<GTListItem *> *listData = [self _readDataFromLocal];
+    
+    if(listData) {
+        return finishBlock(YES, listData);
+    }
+    
     NSString *urlString = @"http://v.juhe.cn/toutiao/index?type=top&key=97ad001bfcc2082e2eeaf798bad3d54e";
     
     NSURL *listUrl = [NSURL URLWithString:urlString];
@@ -47,6 +53,22 @@
     [dataTask resume];
 }
 
+- (NSArray<GTListItem *> *) _readDataFromLocal {
+    NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
+    NSString *cachePath = [pathArr firstObject];
+    NSString *listDataPath = [cachePath stringByAppendingPathComponent:@"GTData/list"];
+    
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    NSData *readListData = [fileManager contentsAtPath:listDataPath];
+    
+    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects:[NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
+    if([unarchiveObj isKindOfClass:[NSArray class]] && [unarchiveObj count] > 0) {
+        return (NSArray<GTListItem *> *)unarchiveObj;
+    }
+    return nil;
+}
+
 - (void)_archiveListData:(NSArray<GTListItem *> *)array {
     NSArray *pathArr = NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES);
     
@@ -54,7 +76,7 @@
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
-    NSString *dataPath = [cachePath stringByAppendingPathComponent:@"GTData"];
+    NSString *dataPath = [cachePath stringByAppendingPathComponent:@"GTData/list"];
     
     NSError *createError;
     [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&createError];
@@ -63,12 +85,6 @@
     NSData *listData = [NSKeyedArchiver archivedDataWithRootObject:array requiringSecureCoding:YES error:nil];
 
     [[NSUserDefaults standardUserDefaults] setObject:listData forKey:@"listData"];
-    
-    NSData *testListData = [[NSUserDefaults standardUserDefaults] dataForKey:@"listData"];
-    
-    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects: [NSArray class], [GTListItem class], nil] fromData:testListData error:nil];
-    
-    NSLog(@"");
 }
 
 @end
