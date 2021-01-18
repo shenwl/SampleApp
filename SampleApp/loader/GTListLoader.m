@@ -59,15 +59,15 @@
     NSError *createError;
     [fileManager createDirectoryAtPath:dataPath withIntermediateDirectories:YES attributes:nil error:&createError];
     
-    NSString *listDataPath = [dataPath stringByAppendingPathComponent:@"list"];
     
     NSData *listData = [NSKeyedArchiver archivedDataWithRootObject:array requiringSecureCoding:YES error:nil];
 
-    [fileManager createFileAtPath:listDataPath contents:listData attributes:nil];
+    [[NSUserDefaults standardUserDefaults] setObject:listData forKey:@"listData"];
     
-    NSData *readListData = [fileManager contentsAtPath:listDataPath];
+    NSData *testListData = [[NSUserDefaults standardUserDefaults] dataForKey:@"listData"];
     
-    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects: [NSArray class], [GTListItem class], nil] fromData:readListData error:nil];
+    id unarchiveObj = [NSKeyedUnarchiver unarchivedObjectOfClasses:[NSSet setWithObjects: [NSArray class], [GTListItem class], nil] fromData:testListData error:nil];
+    
     NSLog(@"");
 }
 
