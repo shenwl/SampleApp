@@ -90,9 +90,13 @@
                                          self.commentLabel.frame.origin.x + self.commentLabel.frame.size.width + 15,
                                          self.timeLabel.frame.origin.y, self.timeLabel.frame.size.width, self.timeLabel.frame.size.height
                                          );
-#warning load image
-    UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.picUrl]]];
-    self.rightImageView.image = image;
+    
+    NSThread *loadImageThread = [[NSThread alloc] initWithBlock:^{
+        UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:item.picUrl]]];
+        self.rightImageView.image = image;
+    }];
+    loadImageThread.name = @"loadImageThread";
+    [loadImageThread start];
 }
 
 - (void) deleteButtonClick {
